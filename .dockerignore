@@ -1,0 +1,8 @@
+node_modules
+**/node_modules
+.next
+**/.next
+infra/data
+infra/graphs
+.venv
+__pycache__

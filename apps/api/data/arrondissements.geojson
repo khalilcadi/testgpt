@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paris 13e",
+        "code": "75113"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[2.3312, 48.8339], [2.4085, 48.8339], [2.4085, 48.8565], [2.3312, 48.8565], [2.3312, 48.8339]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paris 1er",
+        "code": "75101"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[2.3320, 48.8572], [2.3572, 48.8572], [2.3572, 48.8705], [2.3320, 48.8705], [2.3320, 48.8572]]]
+      }
+    }
+  ]
+}

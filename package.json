@@ -1,0 +1,10 @@
+{
+  "name": "idf-transit-meeting-point",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "postinstall": "pnpm --filter web install"
+  }
+}

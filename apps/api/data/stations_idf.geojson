@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "STATION_1",
+        "name": "Bibliothèque François Mitterrand",
+        "modes": ["METRO", "RER"],
+        "lines": ["M14", "RERC"],
+        "arrondissement": "Paris 13e",
+        "quartier": "Gare"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.3769, 48.8302]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "STATION_2",
+        "name": "Châtelet",
+        "modes": ["METRO", "RER"],
+        "lines": ["M1", "M4", "RERA"],
+        "arrondissement": "Paris 1er",
+        "quartier": "Les Halles"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.3471, 48.8583]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "STATION_3",
+        "name": "Vitry-sur-Seine",
+        "modes": ["RER"],
+        "lines": ["RERC"],
+        "arrondissement": null,
+        "quartier": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.4032, 48.7873]
+      }
+    }
+  ]
+}

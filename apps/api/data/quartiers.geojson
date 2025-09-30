@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gare",
+        "code": "QS_13_01"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[2.3600, 48.8280], [2.4050, 48.8280], [2.4050, 48.8450], [2.3600, 48.8450], [2.3600, 48.8280]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Les Halles",
+        "code": "QS_01_04"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[2.3400, 48.8560], [2.3530, 48.8560], [2.3530, 48.8635], [2.3400, 48.8635], [2.3400, 48.8560]]]
+      }
+    }
+  ]
+}

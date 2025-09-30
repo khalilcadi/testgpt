@@ -1,0 +1,36 @@
+{
+  "name": "idf-transit-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "4.36.1",
+    "@turf/turf": "6.5.0",
+    "axios": "1.6.2",
+    "maplibre-gl": "3.4.0",
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zustand": "4.4.6",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.39.0",
+    "@types/node": "20.9.1",
+    "@types/geojson": "7946.0.10",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
+    "autoprefixer": "10.4.16",
+    "eslint": "8.53.0",
+    "eslint-config-next": "13.5.6",
+    "postcss": "8.4.31",
+    "tailwindcss": "3.3.5",
+    "typescript": "5.2.2"
+  }
+}
