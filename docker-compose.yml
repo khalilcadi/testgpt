@@ -1,0 +1,78 @@
+version: '3.9'
+
+services:
+  otp:
+    image: ghcr.io/opentripplanner/opentripplanner:v2.3.0
+    container_name: otp
+    environment:
+      JAVA_OPTIONS: "-Xmx${OTP_GRAPH_BUILD_MEMORY:-6G}"
+    volumes:
+      - ./infra/data/gtfs:/var/otp/gtfs:ro
+      - ./infra/data/osm:/var/otp/osm:ro
+      - ./infra/graphs/idf:/var/otp/graphs
+    ports:
+      - "8080:8080"
+    command: >-
+      --load --serve --server --port 8080 --router idf
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/otp/routers/idf/plan"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  api:
+    build:
+      context: ./apps/api
+    container_name: api
+    environment:
+      - OTP_BASE_URL=${OTP_BASE_URL:-http://otp:8080}
+      - GEOPLATFORME_BASE_URL=${GEOPLATFORME_BASE_URL:-https://api-adresse.data.gouv.fr}
+      - AM_TIME=${AM_TIME:-08:30}
+      - PM_TIME=${PM_TIME:-18:00}
+      - DEFAULT_SCENARIO=${DEFAULT_SCENARIO:-AM}
+      - DEFAULT_BUFFER_METERS=${DEFAULT_BUFFER_METERS:-250}
+      - ENABLE_POSTGIS=${ENABLE_POSTGIS:-false}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      otp:
+        condition: service_healthy
+      db:
+        condition: service_started
+    volumes:
+      - ./apps/api:/code
+      - ./apps/api/data:/code/data
+
+  web:
+    build:
+      context: ./apps/web
+    container_name: web
+    environment:
+      - NEXT_PUBLIC_OTP_BASE_URL=${NEXT_PUBLIC_OTP_BASE_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_ENABLE_POSTGIS=${NEXT_PUBLIC_ENABLE_POSTGIS:-false}
+      - NEXT_PUBLIC_MAPTILER_KEY=${NEXT_PUBLIC_MAPTILER_KEY:-}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    profiles:
+      - postgis
+
+volumes:
+  db_data:
